@@ -1,0 +1,96 @@
+{
+  "code": 0,
+  "data": {
+    "order_list": [
+      {
+        "buyer_email": "v4bGFUWCSXZRFDNYINJMPPJTTKO3Q@scs1.tiktok.com",
+        "buyer_message": "",
+        "buyer_uid": "7496200873847458597",
+        "cancel_order_sla": 1748365199,
+        "create_time": "1748144485357",
+        "delivery_option_description": "Global Standard Shipping(Test)",
+        "delivery_option_id": "6956553057215710977",
+        "delivery_option_type": 1,
+        "district_info_list": [
+          { "address_level_name": "Country", "address_name": "Indonesia" },
+          { "address_level_name": "province", "address_name": "Jakarta" },
+          { "address_level_name": "city", "address_name": "South Jakarta" },
+          { "address_level_name": "Sub-district", "address_name": "Se*******" },
+          {
+            "address_level_name": "Urban Community",
+            "address_name": "Se********"
+          }
+        ],
+        "fulfillment_type": 0,
+        "is_cod": false,
+        "is_sample_order": false,
+        "order_id": "580193227210656549",
+        "order_line_list": [
+          {
+            "buyer_service_fee": 1000,
+            "display_status": 111,
+            "is_gift": false,
+            "order_line_id": "580193227210787621",
+            "original_price": 50000,
+            "package_freeze_status": 0,
+            "package_id": 1162083658695805733,
+            "package_status": 1,
+            "platform_discount": 0,
+            "product_id": "1731411476238730574",
+            "product_name": "Alif ganteng banget sedunia dan sealam semesta",
+            "sale_price": 50000,
+            "seller_discount": 0,
+            "seller_sku": "",
+            "shipping_provider_id": "6617675021119438849",
+            "shipping_provider_name": "TT Virtual# JNT express",
+            "sku_id": "1731411478413870414",
+            "sku_image": "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/663541386fb64e97b43af49d90b7c864~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&t=555f072d&ps=933b5bde&shp=54477afb&shcp=3c3d9ffb&idc=my2&from=1413970683",
+            "sku_name": "Default",
+            "sku_type": 0,
+            "tracking_number": ""
+          }
+        ],
+        "order_status": 111,
+        "package_list": [{ "package_id": "1162083658695805733" }],
+        "paid_time": 1748144485426,
+        "payment_info": {
+          "buyer_service_fee": 1000,
+          "currency": "IDR",
+          "original_shipping_fee": 1,
+          "original_total_product_price": 50000,
+          "platform_discount": 0,
+          "seller_discount": 0,
+          "shipping_fee": 1,
+          "shipping_fee_platform_discount": 0,
+          "shipping_fee_seller_discount": 0,
+          "sub_total": 50000,
+          "taxes": 0,
+          "total_amount": 51001
+        },
+        "payment_method_name": "Credit/debit card",
+        "payment_method_type": 4,
+        "receiver_address_updated": 0,
+        "recipient_address": {
+          "address_detail": "Su******************************************************************************************",
+          "addressline1": "Su******************************************************************************************",
+          "addressline2": "",
+          "addressline3": "",
+          "addressline4": "",
+          "full_address": "Indonesia, Jakarta, South Jakarta, Se*******, Se********,Su******************************************************************************************",
+          "name": "a***",
+          "phone": "(+86)123******43",
+          "region_code": "ID",
+          "zipcode": ""
+        },
+        "rts_sla": 1748250000,
+        "shipping_provider": "TT Virtual# JNT express",
+        "shipping_provider_id": "6617675021119438849",
+        "tts_sla": 1748278799,
+        "update_time": 1748144605,
+        "warehouse_id": "7500543113002600247"
+      }
+    ]
+  },
+  "message": "Success",
+  "request_id": "202505260303432314F7271B446E33137F"
+}

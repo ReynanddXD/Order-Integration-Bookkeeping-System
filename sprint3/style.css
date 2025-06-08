@@ -1,0 +1,782 @@
+/* Reset dasar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #2c2c2c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu li.active,
+.menu li:hover {
+  background-color: #00aaff;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.logout {
+  margin-top: auto;
+  padding: 10px;
+  border-top: 1px solid #555;
+  cursor: pointer;
+  color: #bbb;
+}
+
+/* Main Area */
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(to right, #2874f0, #00aaff);
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+/* Header 2 (Tabs bar di bawah header utama) */
+.header2 {
+  background: linear-gradient(to right, #639ffe, #00aaff);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.header2 button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header2 button:hover {
+  background-color: #3b6cb7;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tabs button {
+  background: white;
+  color: #2874f0;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabs button:hover {
+  background: #e6f0ff;
+}
+
+/* Profile */
+.profile {
+  text-align: right;
+  font-size: 14px;
+}
+
+/* Konten utama */
+.content {
+  flex: 1;
+  padding: 40px 40px 40px 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.content h3 {
+  margin-bottom: 20px;
+}
+
+
+/* Order Cards */
+.order-card {
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-photo {
+  width: 60px;
+  height: 60px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-right: 15px;
+}
+
+.order-detail,
+.order-info,
+.status,
+.platform {
+  flex: 1;
+  font-size: 14px;
+}
+
+.order-detail strong {
+  font-weight: 600;
+}
+
+.status {
+  text-align: center;
+}
+
+.platform img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* Layout baris atas */
+.row.top-row {
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* Kolom kiri di row atas */
+.left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Kolom kanan di row atas */
+.right {
+  flex: 1;
+}
+
+/* Card dasar */
+.info-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 25px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-size: 16px;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card saldo */
+.saldo-card .saldo {
+  font-size: 36px;
+  font-weight: bold;
+  color:#00aaff;
+  margin-top: 10px;
+}
+
+/* Card saldo Shopee & TikTok */
+.platform-saldo-card h4 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.platform-saldos {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.platform-item {
+  flex: 1;
+  background-color: #e6f7ff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 170, 255, 0.12);
+  transition: 0.3s;
+}
+
+.platform-item span {
+  display: block;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.platform-item strong {
+  font-size: 20px;
+  color: #00aaff;
+}
+
+.platform-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 170, 255, 0.2);
+}
+
+/* Card keuntungan & modal digabung dalam satu card */
+.keuntungan-modal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  padding: 25px 30px;
+}
+
+/* Sub card dalam keuntungan & modal */
+.keuntungan-modal-card .sub-card {
+  background-color: #f0f8ff;
+  padding: 20px 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 170, 255, 0.15);
+}
+
+.keuntungan-modal-card .sub-card h4 {
+  margin-bottom: 8px;
+}
+
+.keuntungan-modal-card .sub-card strong {
+  font-size: 24px;
+  color: #00aaff;
+}
+
+/* Card transaksi kecil di sidebar kiri */
+.transaksi-card {
+  flex-direction: column;
+  flex: 1;
+}
+
+.transaksi {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 25px 40px;
+  min-height: 120px;
+  font-size: 15px;
+  color: #444;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.06);
+  margin-bottom: 10px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+.transaksi:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+
+/* Link “Show All My Transactions” */
+.show-more {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.show-more:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+  transform: scale(1.01);
+}
+
+/* Baris bawah transaksi full width */
+.row.transaksi-bottom-row {
+  display: flex;
+  margin-top : 30px;
+}
+
+.transaksi-bottom-row .full-width {
+  flex: 1;
+}
+
+.transaksi-bottom-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.transaksi-bottom-row .full-width {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* Hide transaksi kecil di atas pada layar kecil supaya gak duplikat */
+.desktop-only {
+  display: none;
+}
+
+/* Responsif untuk tampilan mobile */
+@media (min-width: 900px) {
+  .desktop-only {
+    display: flex;
+  }
+}/* Card saldo Shopee & TikTok */
+.platform-saldo-card h4 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.platform-saldos {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.platform-item {
+  flex: 1;
+  background-color: #e6f7ff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 170, 255, 0.12);
+  transition: 0.3s;
+}
+
+.platform-item span {
+  display: block;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.platform-item strong {
+  font-size: 20px;
+  color: #00aaff;
+}
+
+.platform-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 170, 255, 0.2);
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  display: flex;
+  background-color: #f5f6f8;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 260px;
+  background-color: #2f3131;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+  position: fixed;
+  height: 100%;
+}
+
+.logo {
+  padding: 0 20px 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.logo img {
+  width: 130px;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 25px;  /* Sesuaikan ukuran */
+  height: 25px;
+  margin-right: 8px;  /* Jarak antara ikon dan teks */
+  vertical-align: middle;  /* Agar sejajar dengan teks */
+}
+
+.menu {
+  list-style: none;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.menu li {
+  margin: 2px 0;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.menu li a i {
+  width: 10px;
+  text-align: center;
+  margin-right: 12px;
+  font-size: 15px;
+  transition: transform 0.2s;
+}
+
+.menu li.active a {
+  background-color: #4785dc;
+  color: white;
+}
+
+.menu li a:hover {
+  background-color: #4785dc;
+  color: #333;
+}
+
+.logout {
+  padding: 15px 25px;
+  color: white;
+  cursor: pointer;
+  border-top: 1px solid black;
+  margin-top: auto;
+  font-size: 16px;
+}
+
+.logout:hover {
+  color: #4785dc;
+}
+
+/* Main content styles */
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 260px;
+  width: calc(100% - 240px);
+}
+
+.header {
+  background-color: #4785dc;
+  padding: 25px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h2 {
+  color: whitesmoke;
+  font-size: 25px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-info span {
+  font-size: 25px;
+  font-weight: 500;
+  color : white;
+}
+
+.profile-info small {
+  color: white;
+  font-size: 15px;
+}
+
+/* Content styles */
+.content {
+  padding: 25px 30px;
+  flex-grow: 1;
+}
+
+.welcome-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.welcome-section h1 {
+  font-size: 25px;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.subtitle {
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 20px 0;
+}
+
+.welcome-section h2 {
+  font-size: 16px;
+  margin-bottom: 25px;
+  font-weight: 500;
+  color: #444;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.link-item {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  transition: all 0.2s;
+}
+
+.link-item:hover {
+  border-color: #4785dc;
+  box-shadow: 0 4px 12px rgba(3, 172, 14, 0.1);
+}
+
+.link-icon {
+  font-size: 20px;
+  width: 45px;
+  height: 45x;
+  background-color: #f5f6f8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-item strong {
+  color: #222;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link-item small {
+  color: #888;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+/* Performance section */
+.performance-section, .campaign-section {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.performance-section h3, .campaign-section h3 {
+  font-size: 25px;
+  color: #222;
+  font-weight: 600;
+}
+
+.section-description {
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.time-filter {
+  display: flex;
+  gap: 25px;
+  color: #666;
+  font-size: 12px;
+}
+
+.time-filter select {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 12px;
+  color: #555;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.metric-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  
+  /* Center alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.metric-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(71, 133, 220, 0.1);
+  border-color: #4785dc;
+}
+
+.metric-label {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  line-height: 1.2;
+}
+
+/* Campaign section */
+.campaign-section {
+  margin-top: 30px;
+}
+
+.campaign-placeholder {
+  background-color: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}

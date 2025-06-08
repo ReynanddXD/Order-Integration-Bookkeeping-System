@@ -1,0 +1,318 @@
+/* Reset dan Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.saldo-content{
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.sidebar {
+  position: fixed;
+  width: 201px;
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  padding: 20px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.sidebar .logo img {
+  width: 70%;
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+.menu {
+  list-style: none;
+  width: 180px;
+}
+
+.menu li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu li.active,
+.menu li:hover {
+  background-color: #00aaff;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.logout {
+  margin-top: auto;
+  width: 180px;
+  padding: 10px;
+  border-top: 1px solid #555;
+  cursor: pointer;
+  color: #bbb;
+}
+
+.logout:hover {
+  color: #00aaff;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 201px; /* Adjusted to account for sidebar width */
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 201px;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to right, #2874f0, #00aaff);
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.profile {
+  text-align: right;
+  font-size: 14px;
+}
+
+/* Saldo Section */
+.saldo-content {
+  margin: 0;
+  margin-top: 80px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Row */
+.saldo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Top Section */
+.saldo-top-section {
+  justify-content: space-between;
+}
+
+.saldo-left-panel {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.saldo-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+/* Cards */
+.saldo-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.saldo-info-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.saldo-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #00aaff;
+}
+
+/* Platform Cards */
+.saldo-platform-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.saldo-platform-entry {
+  background: #eaf7ff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.saldo-platform-entry span {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.saldo-platform-entry strong {
+  font-size: 18px;
+  color: #00aaff;
+}
+
+/* Profit and Capital */
+.saldo-profit-capital {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.saldo-sub-card {
+  background: #eaf7ff;
+  padding: 15px;
+  border-radius: 10px;
+  height: 98px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.saldo-sub-card h4 {
+  font-size: 19px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.saldo-sub-card strong {
+  font-size: 21px;
+  color: #00aaff;
+}
+
+/* ======================== section bawah ============================= */
+.content-wrapper {
+  padding: 1rem;
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+
+.sub-title {
+  margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Header kolom */
+.transaksi-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: #97d7ff;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.transaksi-header div {
+  color: #000;
+}
+
+/* Kartu transaksi */
+.transaksi-card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: #000;
+  font-weight: 500;
+  align-items: center;
+  text-align: center;
+}
+
+/* Warna untuk Masuk dan Keluar */
+.trans-in {
+  background-color: #e0f7e9; /* hijau muda */
+  color: #1b5e20;
+}
+
+.trans-out {
+  background-color: #ffe6e6; /* merah muda */
+  color: #b71c1c;
+}
+
+/* Responsive horizontal scroll */
+.content-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.content-wrapper::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+.view-more-text {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.view-more-text:hover {
+  color: #0056b3;
+}
+
+

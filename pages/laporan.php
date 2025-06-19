@@ -22,6 +22,7 @@ $result = $stmt->get_result();
   <div class="sidebar">
     <div class="logo"><img src="../assets/img/logo.png" alt="logo"></div>
     <ul class="menu">
+      <li><a href="../index.php">Home</a></li>
       <li><a href="pesanan.php">Pesanan</a></li>
       <li><a href="saldo.php">Info Saldo</a></li>
       <li class="active">Laporan</li>

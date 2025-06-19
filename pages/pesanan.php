@@ -31,13 +31,14 @@ function mapStatus($status) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pesanan - D’ajib Creative House</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style-pesanan.css" />
 </head>
 
 <body>
   <div class="sidebar">
     <div class="logo"><img src="../assets/img/logo.png" alt="logo" /></div>
     <ul class="menu">
+      <li><a href="../index.php">Home</a></li>
       <li class="active">Pesanan</li>
       <li><a href="saldo.php">Info Saldo</a></li>
       <li><a href="laporan.php">Laporan</a></li>

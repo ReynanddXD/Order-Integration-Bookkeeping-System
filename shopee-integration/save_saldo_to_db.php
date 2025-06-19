@@ -116,30 +116,31 @@ for ($i = 1; $i <= 3; $i++) {
             echo "Gagal memperbarui saldo: " . $updateStmt->error . "<br>";
         }
         
-        // laporan pemasukan
-        $jenis_transaksi = 'pemasukan';
-        $deskripsi_laporan = 'Pemasukan dari Shopee';
-        $stmt = $conn->prepare("
-            INSERT INTO bookkeeping (
-                jenis_transaksi, jumlah, tanggal, keterangan, total
-            ) VALUES (?, ?, ?, ?, ?)
-        ");
+        // // laporan pemasukan
+        // $jenis_transaksi = 'pemasukan';
+        // $deskripsi_laporan = 'Pemasukan dari Shopee';
+        // $stmt = $conn->prepare("
+        //     INSERT INTO bookkeeping (
+        //         order_id, jenis_transaksi, jumlah, tanggal, keterangan, total
+        //     ) VALUES (?, ?, ?, ?, ?)
+        // ");
 
-        $stmt->bind_param(
-            "sdssd",
-            $jenis_transaksi,
-            $amount,
-            $date,
-            $deskripsi_laporan,
-            $total
+        // $stmt->bind_param(
+        //     "ssdssd",
+        //     $order_id,
+        //     $jenis_transaksi,
+        //     $amount,
+        //     $date,
+        //     $deskripsi_laporan,
+        //     $total
 
-        );
+        // );
 
-        if ($stmt->execute()) {
-            echo "Order {$order_id} dari $filename berhasil disimpan.<br>";
-        } else {
-            echo "Gagal menyimpan order {$order_id} dari $filename: " . $stmt->error . "<br>";
-        }
+        // if ($stmt->execute()) {
+        //     echo "Order {$order_id} dari $filename berhasil disimpan.<br>";
+        // } else {
+        //     echo "Gagal menyimpan order {$order_id} dari $filename: " . $stmt->error . "<br>";
+        // }
 
         $stmt->close();
     }

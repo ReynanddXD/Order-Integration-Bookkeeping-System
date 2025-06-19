@@ -30,8 +30,9 @@ if ($result && $result->num_rows > 0) {
     <div class="sidebar">
       <div class="logo"><img src="../assets/img/logo.png" alt="logo" /></div>
       <ul class="menu">
+        <li><a href="../index.php">Home</a></li>
         <li><a href="pesanan.php">Pesanan</a></li>
-        <li class="active">Info Saldo</li>
+        <li class="active">info Saldo</li>
         <li><a href="laporan.php">Laporan</a></li>
       </ul>
       <div class="logout">Log Out</div>
@@ -103,7 +104,7 @@ if ($result && $result->num_rows > 0) {
                 $jenis = strtolower($trans['type']) === 'masuk' ? 'Masuk' : 'Keluar';
                 $warna = $jenis === 'Masuk' ? 'trans-in' : 'trans-out';
               ?>
-              <div class="transaksi-card <?php echo $warna; ?> <?php echo $i > 1 ? 'hidden' : ''; ?>">
+              <div class="transaksi-card <?php echo $warna; ?> <?php echo $i > 1 ? 'hidden' : ''; ?>" data-index="<?= $i ?>">
                 <div><?php echo htmlspecialchars($trans['order_id'] ?? '-'); ?></div>
                 <div><?php echo ucfirst($trans['description']); ?></div>
                 <div><?php echo $jenis; ?></div>
@@ -126,10 +127,16 @@ if ($result && $result->num_rows > 0) {
       let isShowingAll = false;
 
       toggleLink.addEventListener('click', function () {
-        const hiddenCards = document.querySelectorAll('.transaksi-card');
-        hiddenCards.forEach((card, index) => {
-          if (index >= 2) {
-            card.classList.toggle('hidden');
+        const cards = document.querySelectorAll('.transaksi-card');
+
+        cards.forEach((card, index) => {
+          const dataIndex = parseInt(card.getAttribute('data-index'));
+          if (isShowingAll) {
+            // Saat sembunyikan: tampilkan hanya 2 pertama
+            card.classList.toggle('hidden', dataIndex > 1);
+          } else {
+            // Saat tampilkan semua: hanya tampilkan hingga data ke-10
+            card.classList.toggle('hidden', dataIndex > 9);
           }
         });
 

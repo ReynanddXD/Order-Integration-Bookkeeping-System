@@ -114,9 +114,6 @@ body {
     font-size: 14px;
 }
 
-
-/* --- (Sisa kode CSS desktop Anda tetap sama persis) --- */
-
 .summary-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -276,9 +273,9 @@ table th {
     z-index: 1000;
 }
 
-/* ============================================================= */
-/* === BAGIAN RESPONSIVE (VERSI FINAL YANG SUDAH DIPERBAIKI) === */
-/* ============================================================= */
+/* ========================== */
+/* === BAGIAN RESPONSIVE  === */
+/* ========================== */
 
 @media (max-width: 768px) {
     .sidebar {
@@ -295,7 +292,11 @@ table th {
     }
 
     .header {
-        padding: 15px;
+      left: 0;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 999;
     }
     
     .profile {
@@ -319,7 +320,7 @@ table th {
     }
 
     .content-wrapper {
-        padding: 15px;
+        padding: 100px 20px 20px 20pxx;
         flex: none; /* Mencegah .content-wrapper meregang */
         overflow-y: visible; /* Membiarkan kontennya mengalir normal */
     }
@@ -369,174 +370,3 @@ table th {
 
 }
 
-/* ========================== */
-/* 💻 DESKTOP BESAR (≥1200px) */
-/* ========================== */
-@media (min-width: 1200px) {
-  .summary-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* =========================== */
-/* 💼 LAPTOP (992px–1199px) */
-/* =========================== */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .summary-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .header h2 {
-    font-size: 1.3rem;
-  }
-
-  .card p {
-    font-size: 1.4rem;
-  }
-}
-
-/* ============================= */
-/* 📱 TABLET LANDSCAPE (768–991) */
-/* ============================= */
-@media (min-width: 768px) and (max-width: 991px) {
-  .summary-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .main {
-    margin-left: 0;
-  }
-
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .hamburger-menu {
-    display: block;
-  }
-
-  .content-wrapper {
-    padding: 15px;
-  }
-
-  table {
-    min-width: 100%;
-    font-size: 0.95rem;
-  }
-
-  .card p {
-    font-size: 1.3rem;
-  }
-}
-
-/* =========================== */
-/* 📲 SMARTPHONE ≤ 767px */
-/* =========================== */
-@media (max-width: 767px) {
-  .header {
-    left: 0;
-    width: 100%;
-}
-
-  .main {
-    margin-left: 0;
-    flex-direction: column;
-  }
-
-  .sidebar {
-    transform: translateX(-100%);
-    width: 220px;
-    padding: 15px;
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .hamburger-menu {
-    display: block;
-    position: relative;
-    z-index: 1002;
-  }
-
-  .summary-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .charts {
-    grid-template-columns: 1fr;
-  }
-
-  .header h2 {
-    font-size: 1.2rem;
-  }
-
-  .card h3 {
-    font-size: 0.95rem;
-  }
-
-  .card p {
-    font-size: 1.2rem;
-  }
-
-  .chart-container h3, 
-  .top-products h3, 
-  .recent-transactions h3 {
-    font-size: 1.2rem;
-  }
-
-  .top-products li,
-  table th,
-  table td {
-    font-size: 0.9rem;
-  }
-
-  .logout {
-    font-size: 0.9rem;
-  }
-}
-
-/* =========================== */
-/* 📟 HP MINI ≤ 480px */
-/* =========================== */
-@media (max-width: 480px) {
-  .header {
-    left: 0;
-    width: 100%;
-  }
-  .card p {
-    font-size: 1.1rem;
-  }
-
-  .card h3 {
-    font-size: 0.9rem;
-  }
-
-  .header h2 {
-    font-size: 1.1rem;
-  }
-
-  .hamburger-menu span {
-    width: 22px;
-    height: 2px;
-  }
-
-  .chart-container, .top-products, .recent-transactions {
-    padding: 15px;
-  }
-
-  table th,
-  table td {
-    padding: 10px 8px;
-    font-size: 0.85rem;
-  }
-
-  .status {
-    font-size: 0.75rem;
-    padding: 4px 8px;
-  }
-}

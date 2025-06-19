@@ -90,6 +90,7 @@ body {
 
 .header h2 {
   margin-right: 20px;
+  text-align: left;
 }
 
 /* Header 2 (Tabs bar di bawah header utama) */
@@ -466,6 +467,48 @@ body {
   color: #222;
 }
 
+/* Tombol Hamburger */
+.toggle-sidebar {
+  display: none;
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
 
+/* Sidebar Responsif */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
 
+  .sidebar.show {
+    left: 0;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .toggle-sidebar {
+    display: block;
+  }
+
+  .header {
+    justify-content: space-between;
+  }
+
+  .header h2 {
+    text-align: left;
+    flex: 1;
+  }
+}
 

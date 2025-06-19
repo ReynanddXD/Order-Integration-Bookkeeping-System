@@ -25,11 +25,16 @@ include 'includes/dashboard-data.php';
         </ul>
         <div class="logout">Log Out</div>
     </div>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <div class="main">
         <div class="sidebar-overlay"></div>
         <div class="header">
-            <div class="hamburger-menu"><span></span><span></span><span></span></div>
+            <div class="hamburger-menu" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <h2>TOKO SAYA</h2>
             <div class="profile">Nama Admin<br /><small>Admin</small></div>
         </div>
@@ -160,6 +165,26 @@ include 'includes/dashboard-data.php';
     renderCircularChart("monthlyTargetChart", <?= $percent_bulan ?>, '#4f46e5');
     renderCircularChart("weeklyTargetChart", <?= $percent_minggu ?>, '#14b8a6');
     </script>
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        const hamburger = document.querySelector('.hamburger-menu');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        overlay.addEventListener('click', (e) => {
+        // Pastikan hanya klik di area overlay yang memicu penutupan
+        if (e.target === overlay) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+  });
+    </script>
+
+
 
 </body>
 </html>

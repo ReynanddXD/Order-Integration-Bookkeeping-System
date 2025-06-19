@@ -15,11 +15,12 @@ $result = $stmt->get_result();
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laporan</title>
   <link rel="stylesheet" href="../assets/css/style-laporan.css" />
 </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="logo"><img src="../assets/img/logo.png" alt="logo"></div>
     <ul class="menu">
       <li><a href="../index.php">Home</a></li>
@@ -32,6 +33,7 @@ $result = $stmt->get_result();
 
   <div class="main">
     <div class="header">
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
       <h2>TOKO SAYA</h2>
       <div class="profile">Nama Admin<br><small>Admin</small></div>
     </div>
@@ -62,15 +64,15 @@ $result = $stmt->get_result();
       <div class="laporan-wrapper">
         <table class="laporan-table">
           <thead>
-  <tr>
-    <th>No</th>
-    <th>Tanggal</th>
-    <th>Jenis</th>
-    <th>Jumlah</th>
-    <th>Keterangan</th>
-    <th>Total</th> 
-  </tr>
-</thead>
+            <tr>
+              <th>No</th>
+              <th>Tanggal</th>
+              <th>Jenis</th>
+              <th>Jumlah</th>
+              <th>Keterangan</th>
+              <th>Total</th> 
+            </tr>
+          </thead>
           <tbody>
             <?php
             $no = 1;
@@ -98,27 +100,34 @@ $result = $stmt->get_result();
           </tbody>
         </table>
 
-       <div class="laporan-summary bawah">
-        <div class="summary-item">
-          <span class="label">Total Pemasukan:</span>
-          <span class="value">Rp <?= number_format($totalPemasukan, 0, ',', '.') ?></span>
+        <div class="laporan-summary bawah">
+          <div class="summary-item">
+            <span class="label">Total Pemasukan:</span>
+            <span class="value">Rp <?= number_format($totalPemasukan, 0, ',', '.') ?></span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Total Pengeluaran:</span>
+            <span class="value">Rp <?= number_format($totalPengeluaran, 0, ',', '.') ?></span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Saldo Akhir:</span>
+            <span class="value">Rp <?= number_format($totalPemasukan - $totalPengeluaran, 0, ',', '.') ?></span>
+          </div>
         </div>
-        <div class="summary-item">
-          <span class="label">Total Pengeluaran:</span>
-          <span class="value">Rp <?= number_format($totalPengeluaran, 0, ',', '.') ?></span>
-        </div>
-        <div class="summary-item">
-          <span class="label">Saldo Akhir:</span>
-          <span class="value">Rp <?= number_format($totalPemasukan - $totalPengeluaran, 0, ',', '.') ?></span>
-        </div>
-      </div>
-      <form method="get" action="../includes/export_excel.php" style="margin-top: 20px;">
-        <input type="hidden" name="bulan" value="<?= $bulan ?>">
-        <input type="hidden" name="tahun" value="<?= $tahun ?>">
-        <button type="submit" class="btn-unduh">Unduh Excel</button>
-      </form>
 
+        <form method="get" action="../includes/export_excel.php" style="margin-top: 20px;">
+          <input type="hidden" name="bulan" value="<?= $bulan ?>">
+          <input type="hidden" name="tahun" value="<?= $tahun ?>">
+          <button type="submit" class="btn-unduh">Unduh Excel</button>
+        </form>
+      </div>
     </div>
   </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>

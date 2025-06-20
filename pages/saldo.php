@@ -1,6 +1,22 @@
 <?php
 require_once "../includes/db.php";
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+// Ambil info user dari database
+$sql_user = "SELECT username, role FROM users WHERE username = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("s", $username);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$user_data = $result_user->fetch_assoc();
+
 // Ambil data saldo
 $sql_saldo = "SELECT * FROM saldo WHERE id = 1 LIMIT 1";
 $result_saldo = $conn->query($sql_saldo);
@@ -16,7 +32,6 @@ if ($result && $result->num_rows > 0) {
         $transactions[] = $row;
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +40,7 @@ if ($result && $result->num_rows > 0) {
     <meta charset="UTF-8" />
     <title>Pemasukan - D’ajib Creative House</title>
     <link rel="stylesheet" href="../assets/css/style-saldo.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <div class="sidebar">
@@ -35,13 +51,18 @@ if ($result && $result->num_rows > 0) {
         <li class="active">info Saldo</li>
         <li><a href="laporan.php">Laporan</a></li>
       </ul>
-      <div class="logout">Log Out</div>
+      <div class="logout"><a class="logout" href="../includes/proses_logout.php">Log Out</a></div>
     </div>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <div class="main">
       <div class="header">
+        <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
         <h2>TOKO SAYA</h2>
-        <div class="profile">Nama Admin<br /><small>Admin</small></div>
+            <div class="profile">
+                <?= htmlspecialchars($user_data['username'] ?? 'Pengguna') ?><br />
+                <small><?= ucfirst(htmlspecialchars($user_data['status'] ?? 'admin')) ?></small>
+            </div>
       </div>
 
       <div class="saldo-content">
@@ -86,7 +107,43 @@ if ($result && $result->num_rows > 0) {
 
         <!-- Bottom Section: Recent Transactions Full Width -->
         <div class="content-wrapper">
-          <h3 class="sub-title">Daftar Transaksi</h3>
+          <div class="transaksi-header-bar">
+            <h3 class="sub-title">Daftar Transaksi</h3>
+
+            <?php
+            // Auto-generate order ID
+            $tanggal = date('Ymd');
+            $prefix = "ORD-" . $tanggal;
+
+            // Ambil nomor terakhir
+            $sql_max = "SELECT MAX(order_id) as max_id FROM transactions WHERE order_id LIKE '$prefix%'";
+            $result_max = $conn->query($sql_max);
+            $row_max = $result_max->fetch_assoc();
+            $last_id = $row_max['max_id'] ?? null;
+
+            if ($last_id) {
+                $last_number = (int)substr($last_id, -4);
+                $new_number = str_pad($last_number + 1, 4, '0', STR_PAD_LEFT);
+            } else {
+                $new_number = '0001';
+            }
+
+            $generated_order_id = $prefix . '-' . $new_number;
+            ?>
+            <form class="form-pengeluaran" action="../includes/tambah_transaksi.php" method="post">
+              <input type="hidden" name="type" value="keluar" />
+              <input type="text" name="order_id" value="<?= $generated_order_id ?>" readonly />
+              <select name="description" required>
+                <option value="">-- Pilih Platform --</option>
+                <option value="shopee">Shopee</option>
+                <option value="tikTok_shop">TikTok Shop</option>
+              </select>
+              <input type="number" name="amount" placeholder="Jumlah (Rp)" required />
+              <input type="text" name="keterangan" placeholder="Keterangan (opsional)" />
+              <button type="submit">+ Tambah Pengeluaran</button>
+            </form>
+
+          </div>
 
           <!-- Header kolom -->
           <div class="transaksi-header">
@@ -144,6 +201,25 @@ if ($result && $result->num_rows > 0) {
         this.textContent = isShowingAll ? 'Sembunyikan transaksi' : 'Lihat semua transaksi';
       });
     </script>
+    <script>
+  const sidebar = document.querySelector('.sidebar');
+  const toggleBtn = document.querySelector('.toggle-sidebar');
+
+  function toggleSidebar() {
+    sidebar.classList.toggle('active');
+  }
+
+  document.addEventListener('click', function (e) {
+    // Jika sidebar sedang aktif, dan klik bukan di sidebar atau tombol toggle
+    if (
+      sidebar.classList.contains('active') &&
+      !sidebar.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
 
   </body>
 </html>

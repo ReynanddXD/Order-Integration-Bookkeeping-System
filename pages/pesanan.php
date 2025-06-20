@@ -1,5 +1,22 @@
 <?php
 require_once "../includes/db.php";
+
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+// Ambil info user dari database
+$sql_user = "SELECT username, role FROM users WHERE username = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("s", $username);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$user_data = $result_user->fetch_assoc();
+
 // Ambil semua pesanan
 $sql = "SELECT * FROM orders ORDER BY order_date ASC";
 $result = $conn->query($sql);
@@ -43,23 +60,37 @@ function mapStatus($status) {
       <li><a href="saldo.php">Info Saldo</a></li>
       <li><a href="laporan.php">Laporan</a></li>
     </ul>
-    <div class="logout">Log Out</div>
+    <div class="logout"><a class="logout" href="../includes/proses_logout.php">Log Out</a></div>
   </div>
 
   <div class="main">
     <div class="header">
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
       <h2>TOKO SAYA</h2>
       <div class="tabs"></div>
-      <div class="profile">Nama Admin<br /><small>Admin</small></div>
+          <div class="profile">
+              <?= htmlspecialchars($user_data['username'] ?? 'Pengguna') ?><br />
+              <small><?= ucfirst(htmlspecialchars($user_data['status'] ?? 'admin')) ?></small>
+          </div>
     </div>
 
     <div class="header2">
-      <button data-status="semua" onclick="filterStatus('semua')">Semua</button>
-      <button data-status="belum bayar" onclick="filterStatus('belum bayar')">Belum Bayar</button>
-      <button data-status="siap kirim" onclick="filterStatus('siap kirim')">Siap Kirim</button>
-      <button data-status="dikirim" onclick="filterStatus('dikirim')">Dikirim</button>
-      <button data-status="selesai" onclick="filterStatus('selesai')">Selesai</button>
-      <button data-status="dibatalkan" onclick="filterStatus('dibatalkan')">Pembatalan</button>
+      <div class="status-buttons">
+        <button data-status="semua" onclick="filterStatus('semua')">Semua</button>
+        <button data-status="belum bayar" onclick="filterStatus('belum bayar')">Belum Bayar</button>
+        <button data-status="siap kirim" onclick="filterStatus('siap kirim')">Siap Kirim</button>
+        <button data-status="dikirim" onclick="filterStatus('dikirim')">Dikirim</button>
+        <button data-status="selesai" onclick="filterStatus('selesai')">Selesai</button>
+        <button data-status="dibatalkan" onclick="filterStatus('dibatalkan')">Pembatalan</button>
+      </div>
+
+      <div class="search-bar">
+        <select id="search-type">
+          <option value="order_id">Cari berdasarkan Order ID</option>
+          <option value="username">Cari berdasarkan Username</option>
+        </select>
+        <input type="text" id="search-input" placeholder="Ketik untuk mencari..." oninput="searchOrders()" />
+      </div>
     </div>
 
     <div class="content">
@@ -70,8 +101,12 @@ function mapStatus($status) {
       <?php while($row = $result->fetch_assoc()): 
         $mappedStatus = mapStatus($row['status']);
       ?>
-      <div class="order-card" data-status="<?php echo $mappedStatus; ?>">
+      <div class="order-card"
+        data-status="<?php echo $mappedStatus; ?>"
+        data-order-id="<?php echo strtolower($row['order_id']); ?>"
+        data-username="<?php echo strtolower($row['username']); ?>">
 
+      <!-- Gambar -->
         <div class="product-photo">
           <img
             src="<?php echo htmlspecialchars($row['product_image']); ?>"
@@ -80,6 +115,7 @@ function mapStatus($status) {
           />
         </div>
 
+        <!-- detail -->
         <div class="order-detail">
           <strong><?php echo htmlspecialchars($row['username']); ?></strong><br />
           <?php
@@ -158,5 +194,20 @@ function mapStatus($status) {
       filterStatus('siap kirim');
     });
   </script>
+
+  <!-- untuk mencari pesanan -->
+   <script src = "../assets/js/search-pesanan.js"></script>
+   <script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('show');
+  }
+</script>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('show');
+  }
+</script>
 </body>
 </html>

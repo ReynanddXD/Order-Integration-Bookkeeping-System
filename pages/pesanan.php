@@ -62,6 +62,7 @@ function mapStatus($status) {
     </ul>
     <div class="logout"><a class="logout" href="../includes/proses_logout.php">Log Out</a></div>
   </div>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
   <div class="main">
     <div class="header">
@@ -198,16 +199,27 @@ function mapStatus($status) {
   <!-- untuk mencari pesanan -->
    <script src = "../assets/js/search-pesanan.js"></script>
    <script>
+  const sidebar = document.querySelector('.sidebar');
+  const toggleBtn = document.querySelector('.hamburger');
+  const overlay = document.querySelector('.sidebar-overlay');
+
   function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('show');
+    overlay.classList.toggle('active');
   }
+
+  // Tutup sidebar saat klik di luar
+  document.addEventListener('click', function (e) {
+    if (
+      sidebar.classList.contains('show') &&
+      !sidebar.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      sidebar.classList.remove('show');
+      overlay.classList.remove('active');
+    }
+  });
 </script>
-<script>
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('show');
-  }
-</script>
+
 </body>
 </html>

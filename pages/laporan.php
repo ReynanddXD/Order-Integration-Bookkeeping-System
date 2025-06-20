@@ -30,6 +30,7 @@ $result = $stmt->get_result();
     </ul>
     <div class="logout">Log Out</div>
   </div>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
   <div class="main">
     <div class="header">
@@ -125,9 +126,27 @@ $result = $stmt->get_result();
   </div>
 
   <script>
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("show");
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.querySelector(".toggle-sidebar");
+  const overlay = document.querySelector(".sidebar-overlay");
+
+  function toggleSidebar() {
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("active");
+  }
+
+  // Tutup sidebar saat klik di luar sidebar dan bukan tombol toggle
+  document.addEventListener("click", function (e) {
+    if (
+      sidebar.classList.contains("show") &&
+      !sidebar.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      sidebar.classList.remove("show");
+      overlay.classList.remove("active");
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
